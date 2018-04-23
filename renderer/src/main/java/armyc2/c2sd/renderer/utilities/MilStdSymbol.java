@@ -79,6 +79,10 @@ public class MilStdSymbol
     
     private static String _AltitudeMode = "";
 
+    private static DistanceUnit _AltitudeUnit = null;
+
+    private static DistanceUnit _DistanceUnit = null;
+
     private static boolean _useDashArray = true;
 
     private static boolean _hideOptionalLabels = false;
@@ -279,6 +283,22 @@ public class MilStdSymbol
     public void setAltitudeMode(String value)
     {
         _AltitudeMode = value;
+    }
+
+    public DistanceUnit getAltitudeUnit(){
+        return _AltitudeUnit;
+    }
+
+    public void setAltitudeUnit(DistanceUnit unit){
+        _AltitudeUnit = unit;
+    }
+
+    public DistanceUnit getDistanceUnit(){
+        return _DistanceUnit;
+    }
+
+    public void setDistanceUnit(DistanceUnit unit){
+        _DistanceUnit = unit;
     }
     
     public boolean getUseDashArray()
