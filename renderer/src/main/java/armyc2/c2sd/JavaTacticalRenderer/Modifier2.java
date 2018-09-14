@@ -2393,7 +2393,7 @@ public class Modifier2 {
             if (tg.get_Client().equals("cpof3d")) {
                 csFactor = 0.9d;
             }
-
+			
             switch (tg.get_LineType()) {
                 case TacticalLines.DUMMY:
                 case TacticalLines.SERIES:
@@ -2602,6 +2602,10 @@ public class Modifier2 {
             int nextIndex = 0;
             int size = tg.Pixels.size();
             Line2D line = null;
+			
+			double dAngle0, dAngle1;
+            int stringHeight;
+			
             switch (linetype) {
                 case TacticalLines.GENERIC:
                     AddIntegralModifier(tg, tg.get_Name(), aboveMiddle, 0, middleSegment, middleSegment + 1, true);
@@ -2654,11 +2658,15 @@ public class Modifier2 {
                 case TacticalLines.SCREEN:
                 case TacticalLines.COVER:
                 case TacticalLines.GUARD:
-                    stringWidth = (int) (1.5 * (double) metrics.stringWidth(label));
+					stringHeight = (int) (0.5 * (double) font.getSize());
+                    dAngle0 = Math.atan2(tg.Pixels.get(0).y - tg.Pixels.get(1).y, tg.Pixels.get(0).x - tg.Pixels.get(1).x);
+                    dAngle1 = Math.atan2(tg.Pixels.get(0).y - tg.Pixels.get(2).y, tg.Pixels.get(0).x - tg.Pixels.get(2).x);
                     pt0 = new POINT2(tg.Pixels.get(0));
-                    pt0.x += 2 * stringWidth;
+                    pt0.x -= 30 * Math.cos(dAngle0);
+                    pt0.y -= 30 * Math.sin(dAngle0) + stringHeight;
                     pt1 = new POINT2(tg.Pixels.get(0));
-                    pt1.x -= 2 * stringWidth;
+                    pt1.x -= 30 * Math.cos(dAngle1);
+                    pt1.y -= 30 * Math.sin(dAngle1) + stringHeight;
                     AddIntegralAreaModifier(tg, label, area, 0, pt0, pt0, true);
                     AddIntegralAreaModifier(tg, label, area, 0, pt1, pt1, true);
                     break;
