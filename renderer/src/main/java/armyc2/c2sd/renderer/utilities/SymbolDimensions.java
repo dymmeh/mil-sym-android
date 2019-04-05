@@ -24,30 +24,42 @@ public class SymbolDimensions {
 			
 			switch(index - 57000)
 			{
-				case 800:
+				case 800://unknown ground
 				case 801:
 				case 802:
+				case 853://unknown cyber
+				case 854:
+				case 855:
 					//rect = RectUtilities.makeRectF(0,0,60.8f,60.8f);//unknown
 					dimensions[2]=60.8f;
 					dimensions[3]=60.8f;
 					break;
-				case 803:
+				case 803://FG
 				case 804:
 				case 805:
+				case 856://FC
+				case 857:
+				case 858:
                     //rect = RectUtilities.makeRectF(0,0,65,47);//friendly//65,45
 					dimensions[2]=62.547f;
 					dimensions[3]=44.52632f;
 					break;
-				case 806:
+				case 806://HG
 				case 807:
 				case 808:
+				case 859://HC
+				case 860:
+				case 861:
                     //rect = RectUtilities.makeRectF(0,0,62.5f,62.5f);//hostile
 					dimensions[2]=62.5f;
 					dimensions[3]=62.5f;
 					break;
-				case 809:
+				case 809://NG
 				case 810:
 				case 811:
+				case 862://NC
+				case 863:
+				case 864:
                     //rect = RectUtilities.makeRectF(0,0,50.05f,50.05f);//neutral
 					dimensions[2]=47.6085f;
 					dimensions[3]=47.6085f;
