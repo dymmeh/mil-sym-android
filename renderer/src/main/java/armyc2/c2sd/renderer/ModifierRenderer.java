@@ -1170,10 +1170,23 @@ public class ModifierRenderer
         Point pt2 = null;
         Point pt3 = null;
 
+        char affiliation = symbolID.charAt(1);
         int length = 40;
         if (SymbolUtilities.isNBC(symbolID))
         {
             length = Math.round(bounds.height() / 2);
+        }
+        else if((SymbolUtilities.isHQ(symbolID)) &&
+                (affiliation==('F') ||
+                        affiliation==('A') ||
+                        affiliation==('D') ||
+                        affiliation==('M') ||
+                        affiliation==('J') ||
+                        affiliation==('K') ||
+                        affiliation==('N') ||
+                        affiliation==('L')) == false)
+        {
+            length = (int)Math.round(bounds.height() * 0.7);
         }
         else
         {
@@ -1190,24 +1203,66 @@ public class ModifierRenderer
 
         pt1 = new Point(x1, y1);
         char scheme = symbolID.charAt(0);
-        if (SymbolUtilities.isNBC(symbolID)
+        if (SymbolUtilities.isHQ(symbolID)==false && SymbolUtilities.isNBC(symbolID)
                 || (scheme == 'S' && symbolID.charAt(2) == ('G')) ||
                 scheme == 'O' || scheme == 'E')
         {
-            y1 = bounds.top + bounds.height();
-            pt1 = new Point(x1, y1);
-
-            if (isY == true && SymbolUtilities.isNBC(symbolID))//make room for y modifier
+            //drawStaff = true;
+            if(SymbolUtilities.isHQ(symbolID)==false)//has HQ staff to start from
             {
-                int yModifierOffset = (int) _modifierFontHeight;
+                y1 = bounds.top + bounds.height();
+                pt1 = new Point(x1, y1);
 
-                yModifierOffset += RS.getTextOutlineWidth();
+                if (isY == true && SymbolUtilities.isNBC(symbolID))//make room for y modifier
+                {
+                    int yModifierOffset = (int) _modifierFontHeight;
 
-                pt1.offset(0, yModifierOffset);
+                    yModifierOffset += RS.getTextOutlineWidth();
+
+                    pt1.offset(0, yModifierOffset);
+                }
+
+                y1 = y1 + length;
+                pt2 = new Point(x1, y1);
             }
+            else
+            {
+                x1 = bounds.left+1;
+                pt2 = new Point(x1, y1);
+                if(affiliation == 'F' ||
+                        affiliation == 'A' ||
+                        affiliation == 'D' ||
+                        affiliation == 'M' ||
+                        affiliation == 'J' ||
+                        affiliation == 'K' ||
+                        affiliation == 'N' ||
+                        affiliation == 'L')
+                {
+                    /*y1 = bounds.top + bounds.height();
+                    pt1 = new Point(x1, y1);
+                    y1 = y1 + length;
+                    pt2 = new Point(x1, y1);//*/
 
-            y1 = y1 + length;
-            pt2 = new Point(x1, y1);
+                    pt1.x = x1;
+                    y1 = bounds.top + (bounds.height());
+                    pt1.y = y1;
+                    x2 = x1;
+                    pt2.x = x2;
+                    y1 = pt1.y + bounds.height();
+                    pt2.y = y1;//*/
+
+                }
+                else
+                {
+                    pt1.x = x1;
+                    y1 = bounds.top + (bounds.height() / 2);
+                    pt1.y = y1;
+                    x2 = x1;
+                    pt2.x = x2;
+                    y1 = pt1.y + bounds.height();
+                    pt2.y = y1;
+                }
+            }
         }
 
 	    //get endpoint given start point and an angle
