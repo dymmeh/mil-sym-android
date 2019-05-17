@@ -109,7 +109,7 @@ public abstract class Rectangle2D {
     public boolean contains(double x1, double y1)
     {
         if(x<=x1 && x1<=x+width  && 
-                y<=y1 && y1<=y+width)
+                y<=y1 && y1<=y+height)
             return true;
         else return false;
     }
@@ -155,7 +155,7 @@ public abstract class Rectangle2D {
     public boolean contains(Point2D pt)
     {
         if(x<=pt.getX() && pt.getX()<=x+width)
-            if(y<=pt.getY() && pt.getY()<=x+height)
+            if(y<=pt.getY() && pt.getY()<=y+height)
                 return true;
         
         return false;
