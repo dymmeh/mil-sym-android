@@ -5,11 +5,15 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath "org.ajoberstar:grgit:1.7.0"
-        classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3"
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.13"
+        classpath 'com.android.tools.build:gradle:3.3.3'
+        //classpath "org.ajoberstar:grgit:1.7.0"
+        classpath "org.ajoberstar:grgit:3.3"
+        //classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE"
+        //classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3"
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
+        //classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.13"
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.7.2"
     }
 }
 
@@ -35,7 +39,8 @@ subprojects  {
         android_minSdkVersion     = 15
         android_targetSdkVersion  = 19
         android_compileSdkVersion = 19
-        android_buildToolsVersion = "27.0.1"
+        //android_buildToolsVersion = "27.0.1"
+        android_buildToolsVersion = "30.0.1"
     }
 
     group = "mil.army.missioncommand"
@@ -43,6 +48,7 @@ subprojects  {
     repositories {
         mavenLocal()
         jcenter()
+        google() //for AAPT2
     }
 
     dependencyManagement {
@@ -84,5 +90,12 @@ def updatePom(pom, gradleProject) {
 }
 
 task wrapper(type: Wrapper, description: "Generates gradlew[.bat] scripts") {
-    gradleVersion = '3.4'
+//    gradleVersion = '6.5.1'
+//    gradleVersion = '3.4'
+    gradleVersion = '4.10.3'
 }
+
+//wrapper{
+    //gradleVersion = '6.5.1'
+//    gradleVersion = '4.10.3'
+//}

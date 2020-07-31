@@ -31,21 +31,21 @@ task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
 }
 
-publishing.publications {
-    maven(MavenPublication) {
-        pom.packaging = "aar"
+project.afterEvaluate {
+    publishing.publications {
+        maven(MavenPublication) {
+            pom.packaging = "aar"
 
-        artifact ("${buildDir}/outputs/aar/${project.name}-release.aar")
-        artifact ("${buildDir}/intermediates/bundles/release/classes.jar")
+            artifact("${buildDir}/outputs/aar/${project.name}-release.aar")
+            artifact("${buildDir}/intermediates/bundles/release/classes.jar")
 
-        artifact sourceJar { classifier "sources" }
-        artifact javadocJar { classifier "javadoc" }
-
-        updatePom(pom, project);
+            artifact sourceJar { classifier "sources" }
+            artifact javadocJar { classifier "javadoc" }
+            updatePom(pom, project)
+        }
     }
 }
-
-String generatedResDir = 'build/generated-res/';
+String generatedResDir = 'build/generated-res/'
 
 //Ensure that the generated resource directory is created
 file('build/generated-res/raw').mkdirs()
