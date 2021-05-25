@@ -1,40 +1,41 @@
 buildscript {
     repositories {
         mavenLocal()
+		mavenCentral()
         google()
-        jcenter()
+        //jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.3'
         //classpath 'com.android.tools.build:gradle:4.1.3'
         //classpath "org.ajoberstar:grgit:1.7.0"
-        classpath "org.ajoberstar:grgit:3.3"
+        //classpath "org.ajoberstar:grgit:3.3"
         //classpath "io.spring.gradle:dependency-management-plugin:0.6.1.RELEASE"
         classpath "io.spring.gradle:dependency-management-plugin:1.0.9.RELEASE"
         //classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3"
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
+        //classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5"
         //classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.13"
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.7.2"
+        //classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.7.2"
     }
 }
 
 ext {
-    bintrayUser = System.getenv("BINTRAY_USER") ?: project.hasProperty('bintrayUser') ? bintrayUser : ''
-    bintrayKey  = System.getenv('BINTRAY_KEY') ?: project.hasProperty('bintrayKey') ? bintrayKey : ''
-
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-
-    git = org.ajoberstar.grgit.Grgit.open(file('.')) // Open the Git repository in the current directory.
-    revision = git.head().id                         // Get commitId of HEAD.
+//    bintrayUser = System.getenv("BINTRAY_USER") ?: project.hasProperty('bintrayUser') ? bintrayUser : ''
+//    bintrayKey  = System.getenv('BINTRAY_KEY') ?: project.hasProperty('bintrayKey') ? bintrayKey : ''
+//
+   sourceCompatibility = JavaVersion.VERSION_1_8
+   targetCompatibility = JavaVersion.VERSION_1_8
+//
+//    git = org.ajoberstar.grgit.Grgit.open(file('.')) // Open the Git repository in the current directory.
+//    revision = git.head().id                         // Get commitId of HEAD.
 }
 
 subprojects  {
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: 'com.jfrog.bintray'
-    apply plugin: 'com.jfrog.artifactory'
+    //apply plugin: 'com.jfrog.bintray'
+    //apply plugin: 'com.jfrog.artifactory'
     apply plugin: 'maven-publish'
-    apply from: "${rootDir}/gradle/bintray-support.gradle"
+//    apply from: "${rootDir}/gradle/bintray-support.gradle"
 
     ext {
         android_minSdkVersion     = 15
@@ -48,7 +49,8 @@ subprojects  {
 
     repositories {
         mavenLocal()
-        jcenter()
+		mavenCentral()
+        //jcenter()
         google() //for AAPT2
     }
 
