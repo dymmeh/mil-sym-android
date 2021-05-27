@@ -1,4 +1,4 @@
-description = 'MIL-STD-2525 Symbology Renderer'
+description = 'MIL-STD-2525C Symbology Renderer'
 
 apply plugin: 'com.android.library'
 apply from: "${rootDir}/gradle/android-support.gradle"
@@ -31,6 +31,7 @@ task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
 }
 
+
 project.afterEvaluate {
     publishing.publications {
         maven(MavenPublication) {
@@ -61,5 +62,15 @@ afterEvaluate{
     // Write the binary resources only if we are building an APK
     tasks['preBuild'].dependsOn writeBinaryResources
 }
+
+
+
+ext {
+    PUBLISH_GROUP_ID = 'io.github.missioncommand'
+    PUBLISH_VERSION = '0.1.47'
+    PUBLISH_ARTIFACT_ID = 'mil-sym-android-renderer'
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"
 
 

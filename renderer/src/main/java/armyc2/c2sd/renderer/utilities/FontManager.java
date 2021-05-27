@@ -29,7 +29,10 @@ public class FontManager {
 	private Typeface _tfTG = null;
 	private String unitFontName = "unitfont.ttf";
 	private String spFontName = "singlepointfont.ttf";
-	private String tgFontName = "tacticalgraphicsfont.ttf";
+	private String tgFontName = "tacticalgraphicsfont.ttf";//*/
+	/*private String unitFontName = "unitfont.otf";
+	private String spFontName = "singlepointfont.otf";
+	private String tgFontName = "tacticalgraphicsfont.otf";//*/
 	private String _cacheDir = "";
 	
 	private FontManager()
